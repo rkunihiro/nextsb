@@ -1,9 +1,9 @@
 import * as React from "react";
-import NextApp, { AppProps } from 'next/app'
+import { AppProps } from 'next/app'
 
 import "./styles.scss";
 
-export const App = ({ Component, pageProps }: AppProps): React.ReactNode => {
+export const App: React.FC<AppProps> = ({ Component, pageProps }) => {
     console.log(`App`);
     return (
         <Component {...pageProps} />

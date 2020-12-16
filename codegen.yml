@@ -1,0 +1,15 @@
+overwrite: true
+schema: "src/server/typeDefs.ts"
+documents: "src/graphql/query.ts"
+generates:
+  src/server/types.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+    config:
+      useIndexSignature: true
+  src/graphql/types.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

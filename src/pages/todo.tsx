@@ -1,12 +1,11 @@
-import React from "react";
-import Head from "next/head";
 import { ApolloProvider } from "@apollo/client";
+import Head from "next/head";
 
-import { client } from "../graphql/client";
-import { TodoList } from "../component/TodoList";
 import { TodoInput } from "../component/TodoInput";
+import { TodoList } from "../component/TodoList";
+import { client } from "../graphql/client";
 
-const Todo: React.FC = () => {
+export default function Todo(): JSX.Element {
     return (
         <>
             <Head>
@@ -18,6 +17,4 @@ const Todo: React.FC = () => {
             </ApolloProvider>
         </>
     );
-};
-
-export default Todo;
+}

@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { useAddTodoMutation, useTodosQuery } from "../graphql/types";
 
-export const TodoInput: React.FC = () => {
+export function TodoInput(): JSX.Element {
     const [title, setTitle] = useState("");
     const { refetch } = useTodosQuery();
     const [addTodo, { loading }] = useAddTodoMutation();
 
     return (
         <div>
-            <input type="text" value={title} onChange={(e) => {
-                return setTitle(e.target.value);
-            }} disabled={loading} />
+            <input
+                type="text"
+                value={title}
+                onChange={(e) => {
+                    return setTitle(e.target.value);
+                }}
+                disabled={loading}
+            />
             <button
                 onClick={async () => {
                     await addTodo({ variables: { title } });
@@ -19,7 +24,9 @@ export const TodoInput: React.FC = () => {
                     await refetch();
                 }}
                 disabled={loading}
-            >Submit</button>
+            >
+                Submit
+            </button>
         </div>
     );
-};
+}

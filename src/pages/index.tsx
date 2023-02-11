@@ -1,9 +1,8 @@
-import React from "react";
 import Head from "next/head";
 
 import { Button } from "../component/Button";
 
-const Home: React.FC = () => {
+export default function Home(): JSX.Element {
     return (
         <>
             <Head>
@@ -13,6 +12,4 @@ const Home: React.FC = () => {
             <Button>Click Here</Button>
         </>
     );
-};
-
-export default Home;
+}

@@ -1,8 +1,8 @@
-import React from "react";
+import type { PropsWithChildren } from "react";
 
 import styles from "./Button.module.scss";
 
-export const Button: React.FC = ({ children }) => {
+export function Button({ children }: PropsWithChildren): JSX.Element {
     return (
         <>
             <div className={styles.button}>
@@ -10,4 +10,4 @@ export const Button: React.FC = ({ children }) => {
             </div>
         </>
     );
-};
+}

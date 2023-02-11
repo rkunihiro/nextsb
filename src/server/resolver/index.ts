@@ -1,10 +1,10 @@
-import { v4 as uuid } from "uuid";
+import { randomUUID } from "node:crypto";
 
-import { MutationResolvers, Resolvers, QueryResolvers, Todo } from "../types";
+import { MutationResolvers, QueryResolvers, Resolvers, Todo } from "../types";
 
 const todoDb: Todo[] = [
-    { id: uuid(), title: "alpha" },
-    { id: uuid(), title: "beta" },
+    { id: randomUUID(), title: "alpha" },
+    { id: randomUUID(), title: "beta" },
 ];
 
 const todos: QueryResolvers["todos"] = () => {
@@ -13,7 +13,7 @@ const todos: QueryResolvers["todos"] = () => {
 
 const addTodo: MutationResolvers["addTodo"] = (_parent, { input }) => {
     const todo: Todo = {
-        id: uuid(),
+        id: randomUUID(),
         title: input.title,
     };
     todoDb.push(todo);

@@ -1,80 +1,71 @@
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
+import { gql } from "@apollo/client";
+import * as Apollo from "@apollo/client";
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-};
-
-export type Todo = {
-  __typename?: 'Todo';
-  id: Scalars['String'];
-  title: Scalars['String'];
-};
-
-export type Query = {
-  __typename?: 'Query';
-  todos: Array<Todo>;
-};
-
-export type TodoInput = {
-  title: Scalars['String'];
+    ID: string;
+    String: string;
+    Boolean: boolean;
+    Int: number;
+    Float: number;
 };
 
 export type Mutation = {
-  __typename?: 'Mutation';
-  addTodo?: Maybe<Todo>;
+    __typename?: "Mutation";
+    addTodo?: Maybe<Todo>;
 };
 
-
 export type MutationAddTodoArgs = {
-  input: TodoInput;
+    input: TodoInput;
+};
+
+export type Query = {
+    __typename?: "Query";
+    todos: Array<Todo>;
+};
+
+export type Todo = {
+    __typename?: "Todo";
+    id: Scalars["String"];
+    title: Scalars["String"];
+};
+
+export type TodoInput = {
+    title: Scalars["String"];
 };
 
 export type Schema = {
-  __typename?: 'schema';
-  query?: Maybe<Query>;
-  mutation?: Maybe<Mutation>;
+    __typename?: "schema";
+    mutation?: Maybe<Mutation>;
+    query?: Maybe<Query>;
 };
 
-export type TodosQueryVariables = Exact<{ [key: string]: never; }>;
+export type TodosQueryVariables = Exact<{ [key: string]: never }>;
 
-
-export type TodosQuery = (
-  { __typename?: 'Query' }
-  & { todos: Array<(
-    { __typename?: 'Todo' }
-    & Pick<Todo, 'id' | 'title'>
-  )> }
-);
+export type TodosQuery = { __typename?: "Query"; todos: Array<{ __typename?: "Todo"; id: string; title: string }> };
 
 export type AddTodoMutationVariables = Exact<{
-  title: Scalars['String'];
+    title: Scalars["String"];
 }>;
 
-
-export type AddTodoMutation = (
-  { __typename?: 'Mutation' }
-  & { addTodo?: Maybe<(
-    { __typename?: 'Todo' }
-    & Pick<Todo, 'id' | 'title'>
-  )> }
-);
-
+export type AddTodoMutation = {
+    __typename?: "Mutation";
+    addTodo?: { __typename?: "Todo"; id: string; title: string } | null;
+};
 
 export const TodosDocument = gql`
     query todos {
-  todos {
-    id
-    title
-  }
-}
-    `;
+        todos {
+            id
+            title
+        }
+    }
+`;
 
 /**
  * __useTodosQuery__
@@ -92,22 +83,24 @@ export const TodosDocument = gql`
  * });
  */
 export function useTodosQuery(baseOptions?: Apollo.QueryHookOptions<TodosQuery, TodosQueryVariables>) {
-        return Apollo.useQuery<TodosQuery, TodosQueryVariables>(TodosDocument, baseOptions);
-      }
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useQuery<TodosQuery, TodosQueryVariables>(TodosDocument, options);
+}
 export function useTodosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TodosQuery, TodosQueryVariables>) {
-          return Apollo.useLazyQuery<TodosQuery, TodosQueryVariables>(TodosDocument, baseOptions);
-        }
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useLazyQuery<TodosQuery, TodosQueryVariables>(TodosDocument, options);
+}
 export type TodosQueryHookResult = ReturnType<typeof useTodosQuery>;
 export type TodosLazyQueryHookResult = ReturnType<typeof useTodosLazyQuery>;
 export type TodosQueryResult = Apollo.QueryResult<TodosQuery, TodosQueryVariables>;
 export const AddTodoDocument = gql`
     mutation addTodo($title: String!) {
-  addTodo(input: {title: $title}) {
-    id
-    title
-  }
-}
-    `;
+        addTodo(input: { title: $title }) {
+            id
+            title
+        }
+    }
+`;
 export type AddTodoMutationFn = Apollo.MutationFunction<AddTodoMutation, AddTodoMutationVariables>;
 
 /**
@@ -127,9 +120,12 @@ export type AddTodoMutationFn = Apollo.MutationFunction<AddTodoMutation, AddTodo
  *   },
  * });
  */
-export function useAddTodoMutation(baseOptions?: Apollo.MutationHookOptions<AddTodoMutation, AddTodoMutationVariables>) {
-        return Apollo.useMutation<AddTodoMutation, AddTodoMutationVariables>(AddTodoDocument, baseOptions);
-      }
+export function useAddTodoMutation(
+    baseOptions?: Apollo.MutationHookOptions<AddTodoMutation, AddTodoMutationVariables>,
+) {
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useMutation<AddTodoMutation, AddTodoMutationVariables>(AddTodoDocument, options);
+}
 export type AddTodoMutationHookResult = ReturnType<typeof useAddTodoMutation>;
 export type AddTodoMutationResult = Apollo.MutationResult<AddTodoMutation>;
 export type AddTodoMutationOptions = Apollo.BaseMutationOptions<AddTodoMutation, AddTodoMutationVariables>;

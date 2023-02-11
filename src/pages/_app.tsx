@@ -1,13 +1,10 @@
-import * as React from "react";
 import { AppProps } from "next/app";
 
 import "./styles.scss";
 
-export const App: React.FC<AppProps> = ({ Component, pageProps }) => {
+export function App({ Component, pageProps }: AppProps): JSX.Element {
     console.log(`App`);
-    return (
-        <Component {...pageProps} />
-    );
-};
+    return <Component {...pageProps} />;
+}
 
 export default App;

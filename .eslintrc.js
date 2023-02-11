@@ -1,4 +1,6 @@
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
+    root: true,
     env: {
         browser: true,
         commonjs: true,
@@ -6,19 +8,30 @@ module.exports = {
         node: true,
     },
     extends: [
+        //
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
     ],
     parser: "@typescript-eslint/parser",
-    parserOptions: {
-        ecmaFeatures: { jsx: true },
-        ecmaVersion: 2018,
-    },
-    plugins: ["@typescript-eslint", "react"],
+    plugins: [
+        //
+        "@typescript-eslint",
+        "react",
+    ],
     settings: { react: { version: "detect" } },
     rules: {
         "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off",
     },
+    ignorePatterns: [
+        //
+        "/build/",
+        "/dist/",
+        "/node_modules/",
+        "/out/",
+        "src/server/types.ts",
+        "src/graphql/types.ts",
+    ],
 };

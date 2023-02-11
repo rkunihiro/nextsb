@@ -1,13 +1,9 @@
-import React from "react";
-
 import { useTodosQuery } from "../graphql/types";
 
-export const TodoList: React.FC = () => {
+export function TodoList(): JSX.Element {
     const { data, loading } = useTodosQuery();
     if (loading) {
-        return (
-            <div>Loading...</div>
-        );
+        return <div>Loading...</div>;
     }
     if (!data || !data.todos) {
         return (
@@ -25,4 +21,4 @@ export const TodoList: React.FC = () => {
             </ul>
         </>
     );
-};
+}
